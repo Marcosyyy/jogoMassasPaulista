@@ -2,48 +2,52 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Garante altura mínima de 100% da tela */
+    overflow-x: hidden; /* Previne rolagem horizontal */
 }
 
+/* Ajusta a altura do container e permite que o conteúdo role para baixo no celular */
 .question-container {
-    margin-top: 50px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    overflow-y: auto; /* Permite rolar o conteúdo verticalmente */
 }
 
-.question {
-    font-size: 24px;
-    margin-bottom: 20px;
+/* Ajusta o tamanho do timer e pontuação para telas menores */
+.timer, .feedback {
+    font-size: 18px; /* Menor para caber melhor na tela */
+    margin-bottom: 10px;
 }
 
+/* Ajusta as opções de macarrão para caberem corretamente em telas pequenas */
 .options {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-wrap: wrap; /* Permite que as imagens se ajustem em várias linhas */
+    gap: 15px;
 }
 
+/* Imagens responsivas */
 .option img {
-    width: 150px;
-    height: 150px;
+    width: 100px; /* Ajusta para tamanhos menores */
+    height: 100px;
     cursor: pointer;
 }
 
-.option img:hover {
-    opacity: 0.8;
-}
+@media (max-width: 600px) {
+    /* Quando a tela for menor que 600px (tela de celular), ajusta os estilos */
+    .timer, .feedback {
+        font-size: 16px;
+    }
 
-.timer {
-    font-size: 30px;
-    margin-bottom: 20px;
-}
+    .options {
+        flex-direction: column; /* Alinha as opções verticalmente */
+        gap: 10px;
+    }
 
-.feedback {
-    font-size: 20px;
-    margin-top: 20px;
-}
-
-.correct {
-    color: green;
-}
-
-.incorrect {
-    color: red;
+    .question {
+        font-size: 20px;
+    }
 }
