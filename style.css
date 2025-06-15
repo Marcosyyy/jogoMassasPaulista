@@ -5,80 +5,65 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    overflow-x: hidden;
 }
 
-/* Container da pergunta */
+/* ---------- Área da pergunta ---------- */
 .question-container {
     margin-top: 30px;
     padding: 10px;
 }
 
-/* Texto da pergunta */
 .question {
     font-size: 24px;
     margin-bottom: 20px;
 }
 
-/* Contador de tempo */
+/* ---------- Cronômetro ---------- */
 .timer {
-    font-size: 30px;
+    font-size: 28px;
     margin-bottom: 20px;
 }
 
-/* Container das opções (imagens) */
+/* ---------- Opções (imagens) ---------- */
 .options {
-    display: flex;
-    justify-content: flex-start; /* Alinha à esquerda */
-    flex-wrap: nowrap;           /* Não quebra linha */
-    overflow-x: auto;            /* Permite rolagem horizontal */
-    gap: 10px;
-    padding: 10px;
+    /* grade com 8 colunas fixas  ─ cada imagem ocupa 1 fração igual */
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 6px;          /* espaço entre as imagens */
+    padding: 0 8px;    /* respiro lateral */
 }
 
-/* Cada imagem (opção) */
 .option img {
-    width: 120px;
-    height: 120px;
+    width: 100%;       /* ocupa toda a célula */
+    height: auto;      /* mantém proporção */
     cursor: pointer;
-    flex-shrink: 0; /* Impede a imagem de diminuir demais */
     border: 2px solid transparent;
-    border-radius: 8px;
-    transition: transform 0.2s, border-color 0.2s;
+    border-radius: 6px;
+    transition: transform .2s, border-color .2s;
 }
 
 .option img:hover {
-    opacity: 0.8;
-    transform: scale(1.05);
+    transform: scale(1.04);
     border-color: #999;
 }
 
-/* Feedback de acerto ou erro */
+/* ---------- Feedback ---------- */
 .feedback {
     font-size: 20px;
     margin-top: 20px;
 }
 
-.correct {
-    color: green;
-}
+.correct  { color: green; }
+.incorrect{ color: red; }
 
-.incorrect {
-    color: red;
-}
+/* ---------- Ajustes finos para telas muito estreitas ---------- */
+@media (max-width: 480px) {
+    .question { font-size: 20px; }
+    .timer    { font-size: 22px; }
 
-/* Responsivo para telas menores (opcional) */
-@media (max-width: 600px) {
-    .question {
-        font-size: 20px;
-    }
+    /* diminui a borda e o espaçamento para caber sem rolagem */
+    .options  { gap: 4px; padding: 0 4px; }
 
-    .timer {
-        font-size: 22px;
-    }
-
-    .option img {
-        width: 100px;
-        height: 100px;
-    }
+    /* ligeiramente menor dentro da grade estreita */
+    .option img { border-radius: 4px; }
 }
